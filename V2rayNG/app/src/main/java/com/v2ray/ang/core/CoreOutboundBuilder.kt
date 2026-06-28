@@ -722,7 +722,7 @@ object CoreOutboundBuilder {
                 )
             )
             if (stream.security == "tls") {
-                stream.tlsSettings = V2rayConfig.OutboundBean.StreamSettingsBean.TlsSettingsBean(
+                stream.tlsSettings = OutboundBean.StreamSettingsBean.TlsSettingsBean(
                     serverName = profileItem.sni ?: profileItem.server ?: "",
                     allowInsecure = true
                 )
