@@ -707,7 +707,7 @@ object CoreOutboundBuilder {
         outbound?.streamSettings?.let { stream ->
             stream.network = "xhttp"
             stream.security = profileItem.security ?: "tls"
-            stream.xhttpSettings = V2rayConfig.OutboundBean.StreamSettingsBean.XhttpSettingsBean(
+            stream.xhttpSettings = OutboundBean.StreamSettingsBean.XhttpSettingsBean(
                 path = profileItem.path ?: "/",
                 host = profileItem.host ?: profileItem.server ?: "",
                 mode = "auto",
