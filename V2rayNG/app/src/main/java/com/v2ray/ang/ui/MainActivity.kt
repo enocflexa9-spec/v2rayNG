@@ -327,6 +327,11 @@ class MainActivity : HelperBaseActivity(), NavigationView.OnNavigationItemSelect
             importManually(EConfigType.HYSTERIA2.value)
             true
         }
+           
+        R.id.import_manually_vxauth -> {
+            importManually(EConfigType.VXAUTH.value)
+            true
+        }
 
         R.id.export_all -> {
             exportAll()
