@@ -15,6 +15,7 @@ enum class EConfigType(val value: Int, val protocolScheme: String) {
     HYSTERIA2(9, AppConfig.HYSTERIA2),
     HYSTERIA(900, AppConfig.HYSTERIA),
     HTTP(10, AppConfig.HTTP),
+    VXAUTH(11, AppConfig.VXAUTH),
     POLICYGROUP(101, AppConfig.CUSTOM),
     PROXYCHAIN(102, AppConfig.CUSTOM);
 
