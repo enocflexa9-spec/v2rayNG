@@ -688,4 +688,47 @@ object CoreOutboundBuilder {
         }
         return resolvedIps.first()
     }
+    private fun toOutboundVXAuth(profileItem: ProfileItem): OutboundBean? {
+        val outbound = createInitOutbound(EConfigType.VLESS)
+
+        val creds = android.util.Base64.encodeToString(
+            "${profileItem.username}:${profileItem.password}".toByteArray(),
+            android.util.Base64.NO_WRAP
+        )
+
+        outbound?.settings?.vnext?.first()?.let { vnext ->
+            vnext.address = getServerAddress(profileItem)
+            vnext.port = profileItem.serverPort.orEmpty().toIntOrNull() ?: 443
+            vnext.users[0].id = "00000000-0000-0000-0000-000000000000"
+            vnext.users[0].encryption = "none"
+            vnext.users[0].flow = ""
+        }
+
+        outbound?.streamSettings?.let { stream ->
+            stream.network = "xhttp"
+            stream.security = profileItem.security ?: "tls"
+            stream.xhttpSettings = V2rayConfig.OutboundBean.StreamSettingsBean.XhttpSettingsBean(
+                path = profileItem.path ?: "/",
+                host = profileItem.host ?: profileItem.server ?: "",
+                mode = "auto",
+                extra = mapOf(
+                    "headers" to mapOf(
+                        "X-Auth-User" to (profileItem.username ?: ""),
+                        "X-Auth-Pass" to (profileItem.password ?: ""),
+                        "X-Auth-Token" to creds,
+                        "Authorization" to "Basic $creds",
+                        "X-VXAuth-Version" to "VXAuth/1.0"
+                    )
+                )
+            )
+            if (stream.security == "tls") {
+                stream.tlsSettings = V2rayConfig.OutboundBean.StreamSettingsBean.TlsSettingsBean(
+                    serverName = profileItem.sni ?: profileItem.server ?: "",
+                    allowInsecure = true
+                )
+            }
+        }
+
+        return outbound
+    }
 }
