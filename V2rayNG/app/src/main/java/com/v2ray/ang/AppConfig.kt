@@ -186,6 +186,7 @@ object AppConfig {
     const val SOCKS4 = "socks4://"
     const val SOCKS5 = "socks5://"
     const val HTTP = "http://"
+    const val VXAUTH = "vxauth://"
     const val VLESS = "vless://"
     const val TROJAN = "trojan://"
     const val WIREGUARD = "wireguard://"
