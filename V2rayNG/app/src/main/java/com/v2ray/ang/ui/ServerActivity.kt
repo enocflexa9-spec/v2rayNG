@@ -376,7 +376,7 @@ class ServerActivity : BaseActivity() {
         et_port.text = Utils.getEditable(config.serverPort ?: DEFAULT_PORT.toString())
         et_id.text = Utils.getEditable(config.password.orEmpty())
 
-        if (config.configType == EConfigType.SOCKS || config.configType == EConfigType.HTTP) {
+        if (config.configType == EConfigType.SOCKS || config.configType == EConfigType.HTTP || config.configType == EConfigType.VXAUTH) {
             et_security?.text = Utils.getEditable(config.username.orEmpty())
         } else if (config.configType == EConfigType.VLESS) {
             et_security?.text = Utils.getEditable(config.method.orEmpty())
