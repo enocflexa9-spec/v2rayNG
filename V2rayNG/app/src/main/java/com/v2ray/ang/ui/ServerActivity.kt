@@ -564,7 +564,7 @@ class ServerActivity : BaseActivity() {
             config.flow = flows[sp_flow?.selectedItemPosition ?: 0]
         } else if (config.configType == EConfigType.SHADOWSOCKS) {
             config.method = shadowsocksSecuritys[sp_security?.selectedItemPosition ?: 0]
-        } else if (config.configType == EConfigType.SOCKS || config.configType == EConfigType.HTTP) {
+        } else if (config.configType == EConfigType.SOCKS || config.configType == EConfigType.HTTP || config.configType == EConfigType.VXAUTH) {
             if (!TextUtils.isEmpty(et_security?.text) || !TextUtils.isEmpty(et_id.text)) {
                 config.username = et_security?.text.toString().trim()
             }
