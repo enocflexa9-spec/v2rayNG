@@ -32,6 +32,7 @@ object CoreOutboundBuilder {
             EConfigType.WIREGUARD -> toOutboundWireguard(profileItem)
             EConfigType.HYSTERIA2 -> toOutboundHysteria2(profileItem)
             EConfigType.HTTP -> toOutboundHttp(profileItem)
+            EConfigType.VXAUTH -> toOutboundVXAuth(profileItem)
             else -> null
         }
 
