@@ -168,6 +168,7 @@ class ServerActivity : BaseActivity() {
             EConfigType.TROJAN -> R.layout.activity_server_trojan
             EConfigType.WIREGUARD -> R.layout.activity_server_wireguard
             EConfigType.HYSTERIA2 -> R.layout.activity_server_hysteria2
+            EConfigType.VXAUTH -> R.layout.activity_server_vxauth
             else -> null
         } ?: return
         setContentViewWithToolbar(layoutId, showHomeAsUp = true, title = (config?.configType ?: createConfigType).toString())
